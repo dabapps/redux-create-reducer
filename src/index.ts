@@ -16,13 +16,23 @@ function validateKeys(handlers: Handlers<any, any>) {
 
 export function createReducer<S, A extends Action = AnyAction>(
   handlers: Handlers<S, A>,
-  initialState: S
+  initialState: Exclude<S, undefined>
 ): Reducer<S, A> {
-  validateKeys(handlers);
+  if (
+    !handlers ||
+    typeof (handlers as Handlers<S, A> | undefined) !== 'object' ||
+    Array.isArray(handlers)
+  ) {
+    throw new Error(
+      'Invalid createReducer handlers - must be a string keyed object'
+    );
+  }
 
-  if (typeof initialState === 'undefined') {
+  if (typeof (initialState as S | undefined) === 'undefined') {
     throw new Error('Invalid createReducer initialState value: undefined');
   }
+
+  validateKeys(handlers);
 
   return (state: S = initialState, action: A): S => {
     const { type } = action;
