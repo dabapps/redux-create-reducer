@@ -3,6 +3,7 @@
   "compilerOptions": {
     "listEmittedFiles": true,
     "sourceMap": true,
+    "declaration": true,
     "target": "es5",
     "module": "commonjs",
     "rootDir": "./src/",
