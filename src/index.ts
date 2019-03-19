@@ -16,11 +16,11 @@ function validateKeys(handlers: Handlers<any, any>) {
 
 export function createReducer<S, A extends Action = AnyAction>(
   handlers: Handlers<S, A>,
-  initialState: S
+  initialState: Exclude<S, undefined>
 ): Reducer<S, A> {
   validateKeys(handlers);
 
-  if (typeof initialState === 'undefined') {
+  if (typeof (initialState as S | undefined) === 'undefined') {
     throw new Error('Invalid createReducer initialState value: undefined');
   }
 
