@@ -55,4 +55,36 @@ describe('createReducer', () => {
       createReducer((undefined as unknown) as Handlers<any, any>, null)
     ).toThrow(MATCHES_INVALID_HANDLERS);
   });
+
+  it('should handler multiple actions (including symbols)', () => {
+    interface NumberAction {
+      type: string | symbol;
+      payload: number;
+    }
+
+    const ADD = Symbol('ADD');
+    const add = (count: number): NumberAction => ({
+      type: ADD,
+      payload: count,
+    });
+    const SUB = Symbol('SUB');
+    const sub = (count: number): NumberAction => ({
+      type: SUB,
+      payload: count,
+    });
+
+    const reducer = createReducer<number, NumberAction>(
+      {
+        [ADD]: (state, action) => state + action.payload,
+        [SUB]: (state, action) => state - action.payload,
+      },
+      5
+    );
+
+    expect(reducer(undefined, { type: 'unknown', payload: NaN })).toBe(5);
+    expect(reducer(undefined, add(2))).toBe(7);
+    expect(reducer(1, add(2))).toBe(3);
+    expect(reducer(undefined, sub(3))).toBe(2);
+    expect(reducer(10, sub(2))).toBe(8);
+  });
 });
