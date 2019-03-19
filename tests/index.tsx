@@ -1,8 +1,9 @@
-import { createReducer } from '../src';
+import { createReducer, Handlers } from '../src';
 
 describe('createReducer', () => {
   const MATCHES_INVALID_KEY = /\binvalid\b.+\bkey\b/i;
   const MATCHES_INVALID_INITIAL_STATE = /\binvalid\b.+\initialState\b/i;
+  const MATCHES_INVALID_HANDLERS = /\binvalid\b.+\handlers\b/i;
 
   it('returns a reducer function', () => {
     const reducer = createReducer({}, {});
@@ -41,5 +42,17 @@ describe('createReducer', () => {
         (undefined as unknown) as null
       )
     ).toThrow(MATCHES_INVALID_INITIAL_STATE);
+  });
+
+  it('should error if the handlers are not a string keyed object', () => {
+    expect(() =>
+      createReducer((null as unknown) as Handlers<any, any>, null)
+    ).toThrow(MATCHES_INVALID_HANDLERS);
+    expect(() =>
+      createReducer(([] as unknown) as Handlers<any, any>, null)
+    ).toThrow(MATCHES_INVALID_HANDLERS);
+    expect(() =>
+      createReducer((undefined as unknown) as Handlers<any, any>, null)
+    ).toThrow(MATCHES_INVALID_HANDLERS);
   });
 });
