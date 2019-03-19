@@ -1,0 +1,50 @@
+{
+  "name": "@jakesidsmith/redux-create-reducer",
+  "version": "0.0.0",
+  "description": "A utility to create redux reducers from a set of handlers",
+  "main": "dist/index.js",
+  "types": "src/typings.d.ts",
+  "scripts": {
+    "dist": "./scripts/dist",
+    "prettier-check": "prettier --check '**/*.{ts,tsx,js,jsx}'",
+    "prettier": "prettier --write '**/*.{ts,tsx,js,jsx}'",
+    "lint": "npm run prettier-check && tslint --project tsconfig.json '{src,tests}/**/*.{ts,tsx}' -e '**/*.d.ts'",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "tests": "jest",
+    "test": "npm run lint && npm run typecheck && npm run tests -- --runInBand --coverage",
+    "prepublishOnly": "npm run dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakesidsmith/redux-create-reducer.git"
+  },
+  "keywords": [
+    "redux",
+    "reducer",
+    "utility",
+    "util",
+    "create"
+  ],
+  "author": "Jake 'Sid' Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jakesidsmith/redux-create-reducer/issues"
+  },
+  "homepage": "https://github.com/jakesidsmith/redux-create-reducer#readme",
+  "dependencies": {
+    "redux": ">=4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "jest": "^24.5.0",
+    "prettier": "^1.16.4",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.13.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.3.3333"
+  },
+  "peerDependencies": {
+    "redux": ">=4"
+  }
+}
