@@ -1,6 +1,9 @@
 import { createReducer } from '../src';
 
 describe('createReducer', () => {
+  const MATCHES_INVALID_KEY = /\binvalid\b.+\bkey\b/i;
+  const MATCHES_INVALID_INITIAL_STATE = /\binvalid\b.+\initialState\b/i;
+
   it('returns a reducer function', () => {
     const reducer = createReducer({}, {});
 
@@ -20,8 +23,6 @@ describe('createReducer', () => {
   });
 
   it('should error if invalid handler keys are used', () => {
-    const MATCHES_INVALID_KEY = /invalid/i;
-
     expect(() => createReducer({ undefined: () => ({}) }, {})).toThrow(
       MATCHES_INVALID_KEY
     );
@@ -31,5 +32,11 @@ describe('createReducer', () => {
     expect(() => createReducer({ okay: () => ({}) }, {})).not.toThrow(
       MATCHES_INVALID_KEY
     );
+  });
+
+  it('should error if the initial state is undefined', () => {
+    expect(() =>
+      createReducer<null | undefined>({ foo: () => null }, undefined)
+    ).toThrow(MATCHES_INVALID_INITIAL_STATE);
   });
 });
