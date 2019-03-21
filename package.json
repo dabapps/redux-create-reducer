@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jakesidsmith/redux-create-reducer.git"
+    "url": "git+https://github.com/dabapps/redux-create-reducer.git"
   },
   "keywords": [
     "redux",
@@ -28,9 +28,9 @@
   "author": "Jake 'Sid' Smith",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jakesidsmith/redux-create-reducer/issues"
+    "url": "https://github.com/dabapps/redux-create-reducer/issues"
   },
-  "homepage": "https://github.com/jakesidsmith/redux-create-reducer#readme",
+  "homepage": "https://github.com/dabapps/redux-create-reducer#readme",
   "dependencies": {
     "redux": ">=4"
   },
