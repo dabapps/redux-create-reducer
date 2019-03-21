@@ -1,5 +1,5 @@
 {
-  "name": "@jakesidsmith/redux-create-reducer",
+  "name": "@dabapps/redux-create-reducer",
   "version": "1.0.1",
   "description": "A utility to create redux reducers from a set of handlers",
   "main": "dist/index.js",
