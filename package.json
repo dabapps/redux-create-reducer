@@ -40,8 +40,7 @@
     "prettier": "^1.16.4",
     "ts-jest": "^24.0.0",
     "tslint": "^5.13.1",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-eslint-rules": "^5.4.0",
+    "tslint-config-dabapps": "github:dabapps/tslint-config-dabapps#v0.5.3",
     "typescript": "^3.3.3333"
   },
   "peerDependencies": {

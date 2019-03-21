@@ -1,31 +1,5 @@
 {
   "extends": [
-    "tslint:recommended",
-    "tslint-eslint-rules",
-    "tslint-config-prettier"
-  ],
-  "rules": {
-    "variable-name": [true, "allow-leading-underscore", "ban-keywords"],
-    "strict-type-predicates": true,
-
-    "object-literal-sort-keys": false,
-    "interface-name": false,
-
-    "triple-equals": true,
-    "no-constant-condition": true,
-    "no-console": true,
-    "no-debugger": true,
-    "no-extra-boolean-cast": true,
-    "no-eval": true,
-    "no-shadowed-variable": true,
-
-    "radix": true,
-    "curly": true,
-    "no-switch-case-fall-through": true,
-    "switch-default": true,
-
-    "no-var-keyword": true,
-    "no-unused-expression": true,
-    "no-use-before-declare": true
-  }
+    "tslint-config-dabapps"
+  ]
 }
