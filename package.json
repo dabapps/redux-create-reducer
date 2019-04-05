@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "A utility to create redux reducers from a set of handlers",
   "main": "dist/index.js",
-  "types": "src/typings.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dist": "./scripts/dist",
     "prettier-check": "prettier --check '**/*.{ts,tsx,js,jsx}'",
