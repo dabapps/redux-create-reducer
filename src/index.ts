@@ -3,7 +3,7 @@ import { Action, AnyAction, Reducer } from 'redux';
 const INVALID_HANDLER_KEYS = ['undefined', 'null'];
 
 export type Handlers<S, A extends Action = AnyAction> = {
-  [P in A['type']]: (state: S, action: A) => Exclude<S, undefined>
+  [P in A['type']]: (state: S, action: A) => Exclude<S, undefined>;
 };
 
 function validateKeys(handlers: Handlers<any, any>) {
