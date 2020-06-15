@@ -37,10 +37,7 @@ describe('createReducer', () => {
 
   it('should error if the initial state is undefined', () => {
     expect(() =>
-      createReducer<null | undefined>(
-        { foo: () => null },
-        (undefined as unknown) as null
-      )
+      createReducer({ foo: () => null }, (undefined as unknown) as null)
     ).toThrow(MATCHES_INVALID_INITIAL_STATE);
   });
 
