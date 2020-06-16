@@ -2,8 +2,10 @@ import { Action, AnyAction, Reducer } from 'redux';
 
 const INVALID_HANDLER_KEYS = ['undefined', 'null'];
 
-export type Handlers<S, A extends Action = AnyAction> = {
-  [P in A['type']]: (state: S, action: A) => Exclude<S, undefined>;
+type NotUndefined = {} | null;
+
+export type Handlers<S extends NotUndefined, A extends Action = AnyAction> = {
+  [P in A['type']]: (state: S, action: A) => S;
 };
 
 function validateKeys(handlers: Handlers<any, any>) {
@@ -14,10 +16,10 @@ function validateKeys(handlers: Handlers<any, any>) {
   });
 }
 
-export function createReducer<S, A extends Action = AnyAction>(
-  handlers: Handlers<S, A>,
-  initialState: Exclude<S, undefined>
-): Reducer<S, A> {
+export function createReducer<
+  S extends NotUndefined,
+  A extends Action = AnyAction
+>(handlers: Handlers<S, A>, initialState: S): Reducer<S, A> {
   if (
     !handlers ||
     typeof (handlers as Handlers<S, A> | undefined) !== 'object' ||
