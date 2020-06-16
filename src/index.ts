@@ -5,7 +5,7 @@ const INVALID_HANDLER_KEYS = ['undefined', 'null'];
 type NotUndefined = {} | null;
 
 export type Handlers<S extends NotUndefined, A extends Action = AnyAction> = {
-  [P in A['type']]: (state: S, action: A) => S
+  [P in A['type']]: (state: S, action: A) => S;
 };
 
 function validateKeys(handlers: Handlers<any, any>) {
