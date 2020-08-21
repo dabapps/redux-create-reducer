@@ -18,7 +18,7 @@ npm i @dabapps/redux-create-reducer -S
 
 ## Usage
 
-```js
+```ts
 import { createReducer } from '@dabapps/redux-create-reducer';
 import { ADD, SUBTRACT, RESET } from './action-types';
 
