@@ -1,4 +1,4 @@
-import { Action, Reducer } from 'redux';
+import { Action, AnyAction, Reducer } from 'redux';
 
 const INVALID_HANDLER_KEYS = ['undefined', 'null'];
 
@@ -23,7 +23,7 @@ export function createReducer<
     [P in T]: (state: S, action: ActionOfType<A, P>) => S;
   },
   initialState: S
-): Reducer<S, ActionOfType<A, T>> {
+) {
   if (
     !handlers ||
     // tslint:disable-next-line:strict-type-predicates
@@ -41,7 +41,7 @@ export function createReducer<
 
   validateKeys(handlers);
 
-  return (state: S = initialState, action: ActionOfType<A, T>): S => {
+  return ((state: S = initialState, action: ActionOfType<A, T>): S => {
     const { type } = action;
 
     if (Object.prototype.hasOwnProperty.call(handlers, type)) {
@@ -50,5 +50,5 @@ export function createReducer<
     }
 
     return state;
-  };
+  }) as Reducer<S, AnyAction>;
 }
