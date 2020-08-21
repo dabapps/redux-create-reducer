@@ -1,4 +1,4 @@
-import { createReducer, Handlers } from '../src';
+import { createReducer } from '../src';
 
 describe('createReducer', () => {
   const MATCHES_INVALID_KEY = /\binvalid\b.+\bkey\b/i;
@@ -12,9 +12,9 @@ describe('createReducer', () => {
   });
 
   it('returns the initialState when an unknown action is emitted', () => {
-    const reducer = createReducer<number>(
+    const reducer = createReducer(
       {
-        foo: state => state + 1,
+        foo: (state: number) => state + 1,
       },
       0
     );
@@ -42,15 +42,15 @@ describe('createReducer', () => {
   });
 
   it('should error if the handlers are not a string keyed object', () => {
-    expect(() =>
-      createReducer((null as unknown) as Handlers<any, any>, null)
-    ).toThrow(MATCHES_INVALID_HANDLERS);
-    expect(() =>
-      createReducer(([] as unknown) as Handlers<any, any>, null)
-    ).toThrow(MATCHES_INVALID_HANDLERS);
-    expect(() =>
-      createReducer((undefined as unknown) as Handlers<any, any>, null)
-    ).toThrow(MATCHES_INVALID_HANDLERS);
+    expect(() => createReducer(null as any, null)).toThrow(
+      MATCHES_INVALID_HANDLERS
+    );
+    expect(() => createReducer([] as any, null)).toThrow(
+      MATCHES_INVALID_HANDLERS
+    );
+    expect(() => createReducer(undefined as any, null)).toThrow(
+      MATCHES_INVALID_HANDLERS
+    );
   });
 
   it('should handler multiple actions (including symbols)', () => {
@@ -70,10 +70,10 @@ describe('createReducer', () => {
       payload: count,
     });
 
-    const reducer = createReducer<number, NumberAction>(
+    const reducer = createReducer(
       {
-        [ADD]: (state, action) => state + action.payload,
-        [SUB]: (state, action) => state - action.payload,
+        [ADD]: (state: number, action: NumberAction) => state + action.payload,
+        [SUB]: (state: number, action: NumberAction) => state - action.payload,
       },
       5
     );
