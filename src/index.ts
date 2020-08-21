@@ -17,7 +17,7 @@ function validateKeys(handlers: Record<string, unknown>) {
 export function createReducer<
   S extends NotUndefined,
   A extends Action<T>,
-  T extends string
+  T extends string | symbol
 >(
   handlers: {
     [P in T]: (state: S, action: ActionOfType<A, P>) => S;
