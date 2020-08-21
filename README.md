@@ -22,46 +22,18 @@ npm i @dabapps/redux-create-reducer -S
 import { createReducer } from '@dabapps/redux-create-reducer';
 import { ADD, SUBTRACT, RESET } from './action-types';
 
-export const count = createReducer(
-  {
-    [ADD]: (state, action) => state + action.payload,
-    [SUBTRACT]: (state, action) => state - action.payload,
-    [RESET]: () => 0,
-  },
-  0 // Initial state (required)
-);
-```
-
-## TypeScript
-
-You can supply a generic type for the reducer state, and the actions it should handle:
-
-```ts
 interface NumberAction {
   type: string;
   payload: number;
 }
 
-export const count = createReducer<number, NumberAction>(
-  // ...
-);
-```
-
-You can use the action generic parameter to narrow the available handlers by setting specific `type` keys:
-
-```ts
-interface NumberAction {
-  type: 'ADD' | 'SUBTRACT' | 'RESET';
-  payload: number;
-}
-
-export const count = createReducer<number, NumberAction>(
+export const count = createReducer(
   {
-    // ...
-    // The next line will have a type error because MULTIPLY was not defined in our type interface
-    [MULTIPLY]: (state, action) => state * action.payload,
+    [ADD]: (state: number, action: NumberAction) => state + action.payload,
+    [SUBTRACT]: (state: number, action: NumberAction) => state - action.payload,
+    [RESET]: () => 0,
   },
-  // ...
+  0 // Initial state (required)
 );
 ```
 
